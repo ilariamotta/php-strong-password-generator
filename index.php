@@ -1,21 +1,17 @@
-<?php var_dump($_GET["length"]); 
+<?php 
+session_start();
+require_once "./functions.php";
+
+var_dump($_GET["length"]); 
 
 $passlength = $_GET["length"] ?? 8;
 $chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*<>?+-_";
 
 
-
-
-function passwordGenerator($passlength, $chars) {
-      $password = "";
-for($i = 0; $i < $passlength; $i++) {
-    $element = random_int(0, strlen($chars) - 1);
-    $password .= $chars[$element];
-}
-    return $password;
+if (isset($_GET["length"])) {
+    $_SESSION["password"] = passwordGenerator($passlength, $chars);
 }
 
-$password = passwordGenerator($passlength, $chars);
 
 ?>
 
@@ -53,7 +49,7 @@ $password = passwordGenerator($passlength, $chars);
                 <div class="grid grid-cols-10 gap-2 mt-4">
             <!-- password -->
     <div class="col-span-6 bg-white rounded p-3 text-center font-mono text-xl">
-        <?php echo $password; ?> 
+        <?php echo $_SESSION["password"]; ?> 
     </div>
             <!-- copy -->
     <button class="col-span-2 bg-blue-500 text-white rounded p-3">Copy</button>
