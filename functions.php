@@ -12,6 +12,6 @@ for($i = 0; $i < $passlength; $i++) {
 
 
 
-$_SESSION["password"] = $password ?? "";
+
 
 ?>

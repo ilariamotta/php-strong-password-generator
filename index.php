@@ -1,8 +1,9 @@
 <?php 
+
+
 session_start();
 require_once "./functions.php";
 
-var_dump($_GET["length"]); 
 
 $passlength = $_GET["length"] ?? 8;
 $chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*<>?+-_";
@@ -10,6 +11,8 @@ $chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567
 
 if (isset($_GET["length"])) {
     $_SESSION["password"] = passwordGenerator($passlength, $chars);
+    header("Location: ./result.php");
+    exit;
 }
 
 
@@ -45,18 +48,7 @@ if (isset($_GET["length"])) {
         <button type="submit" class="mt-4 w-36 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition">Magia sia!</button>
         </form>
         <!-- close form -->
-                <h3 class="text-lg font-bold text-center pt-2">La tua password è pronta da utilizzare dove vuoi!</h3>
-                <div class="grid grid-cols-10 gap-2 mt-4">
-            <!-- password -->
-    <div class="col-span-6 bg-white rounded p-3 text-center font-mono text-xl">
-        <?php echo $_SESSION["password"]; ?> 
-    </div>
-            <!-- copy -->
-    <button class="col-span-2 bg-blue-500 text-white rounded p-3">Copy</button>
-            <!-- regenerate -->
-    <button class="col-span-2 bg-green-500 text-white rounded p-3">↻</button>
-</div>
-<!-- box password -->
+            
 </div>
 
 
